@@ -10,10 +10,9 @@ function  SaveData(){
 }
 CreateBtn.addEventListener('click',function(){
     const div=document.createElement('div')
-    const note=document.createElement('textarea')
+    const note=document.createElement('p')
     note.classList.add('input')
-    note.setAttribute('cols','70%')
-    note.setAttribute('rows','8px')
+    note.setAttribute('contenteditable','true')
     const Deletebtn=document.createElement('button')
     Deletebtn.classList.add('Deletebtn')
     Deletebtn.innerHTML='Delete Note'
@@ -25,7 +24,7 @@ notesContener.addEventListener('click',function(e){
     if (e.target.tagName==='BUTTON'){
         e.target.parentElement.remove()
         SaveData()
-    }else if (e.target.tagName==='TEXTAREA'){
+    }else if (e.target.tagName==='P'){
         notes=document.querySelectorAll('.input')
         // console.log(notes)
         notes.forEach(nt => {
@@ -34,6 +33,5 @@ notesContener.addEventListener('click',function(e){
             }
         });
     }
-    // SaveData()
 })
 

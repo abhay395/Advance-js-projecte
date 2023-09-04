@@ -52,3 +52,9 @@ textarea{
 .Note{
     margin-top: 10px;
 }
+p{
+    background-color: white;
+    height: 150px;
+    width: 90%;
+    outline: none;
+}
