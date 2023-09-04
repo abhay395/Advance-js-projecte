@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather app</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="contener">
+        <div class="search index">
+            <input type="text" placeholder="Enter the text"><button><img src="../image/search.png"></button>
+        </div>
+        <div class="error"><p>invalid city Name</p></div>
+        <div class="bigcontener" >
+        <div class="contener1">
+            <h1 class="city" style="margin-bottom: 0;">New York</h1>
+            <div><img class="Image" src="../image/rain.png" alt=""></div>
+            <h2 class="temprature">42°C</h2>
+        </div>
+        <div class="other">
+            <div>
+                <p>humidity</p>
+                <p class="humidity">30%</p>
+                <img class="humidity1" src="../image/humidity.png" alt="">
+            </div>
+            <div>
+                <p>wind</p>
+                <p class="wind">24Km/h</p>
+                <img class="wind1" src="../image/wind.png" alt="">
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        const city = document.querySelector('.city')
+        const temprature1 = document.querySelector('.temprature')
+        const button1 = document.querySelector('button')
+        const tepImage = document.querySelector('.Image')
+        const input = document.querySelector('input')
+        const humidity = document.querySelector('.humidity')
+        const wind = document.querySelector('.wind')
+        const apiKey = 'c4f6b226aa338c025a219178894cf54b'
+        const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q='
+        // console.log(button1)
+        async function getweather() {
+            // const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=Jhalawar&appid=c4f6b226aa338c025a219178894cf54b&units=metric")
+            // keyId="c4f6b226aa338c025a219178894cf54b" 
+            const response = await fetch(`${apiUrl}${input.value}
+             &appid=${apiKey}&units=metric`)
+
+            const data = await response.json()
+            if(response.status==404){
+                document.querySelector('.error').style.display='block'
+            }else{
+                document.querySelector('.error').style.display='none'
+            temprature1.innerHTML = `${Math.floor(data.main.temp)}°C`
+            city.innerHTML = data.name
+            humidity.innerHTML = `${data.main.humidity}%`
+            wind.innerHTML = `${data.wind.speed}Km/h`
+            if (data.weather[0].main === 'Clouds') {
+                tepImage.src = '../image/clouds.png'
+            } else if (data.weather[0].main === 'Drizzle') {
+                tepImage.src = '../image/drizzle.png'
+            } else if (data.weather[0].main === 'Clear') {
+                tepImage.src = '../image/clear.png'
+            } else if (data.weather[0].main === 'Snow') {
+                tepImage.src = '../image/snow.png'
+            } else if (data.weather[0].main === 'Mist') {
+                tepImage.src = '../image/mist.png'
+            } else if (data.weather[0].main === 'Rain') {
+                tepImage.src = '../image/rain.png'
+            }
+            document.querySelector(".bigcontener").style.display = 'block'
+            document.querySelector(".contener").style.display ='block'
+        }  
+            }
+        button1.addEventListener('click', getweather)
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
