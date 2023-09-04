@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+    /* color: white; */
+}
+body{
+    background-color: aec3b0;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.content{
+    width: 70%;
+}
+h1{
+    font-size: 40px;
+    border-bottom: 4px solid #124559;
+    width: 100%;
+}
+button{
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: #124559;
+    color: white;
+    cursor: pointer;
+}
+.Notes{
+    /* display: flex; */
+    margin-left: 5px;
+    margin-top: 10px;
+}
+textarea{
+
+    outline: none;
+    border: none;
+    resize: none;
+    /* spellcheck="false" */
+    
+}
+.Deletebtn{
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 10px;
+    background-color: #001219;
+    display: block;
+}
+.Note{
+    margin-top: 10px;
+}
