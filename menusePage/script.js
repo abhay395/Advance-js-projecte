@@ -72,37 +72,60 @@ const menu = [
       img: "./images/item-9.jpeg",
       desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
     },
+    {
+      id: 10,
+      title: "steak dimmer",
+      category: "dinner",
+      price: 39.99,
+      img: "./images/item-10.jpeg",
+      desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+    }
   ];
 
 
-  const filterrBtns=document.querySelectorAll('.filter-btn')
-
+  
   const sectionCenter=document.querySelector('.section-center');
-// load items
+  const Catagaorybtns=document.querySelector('.btn-container')
+  // load items
   window.addEventListener('DOMContentLoaded',function(){
     displayMenueItems(menu)
-  });
-  // filter items
-  filterrBtns.forEach(function(btn){
-    btn.addEventListener('click',function(e){
+    const Catagaory=menu.reduce(function(value,item){
+      if(!value.includes(item.category)){
+        value.push(item.category)
+      }
+      return value;
+    },['all'])
+    // console.log(Catagaory)
+    const Catagaorybtn= Catagaory.map((category)=>{
+      return `<button class="filter-btn" data-id=${category} type="button" >
+      ${category}
+      </button>`;
+    }).join("")
+    Catagaorybtns.innerHTML=Catagaorybtn
+    const filterrBtns=document.querySelectorAll('.filter-btn')
+    
+    filterrBtns.forEach(function(btn){
+      btn.addEventListener('click',function(e){
         const category=e.currentTarget.dataset.id
         menuCatagaory=menu.filter(function(menuItems){
-            if(menuItems.category===category){
-                return menuItems
-            }
+          if(menuItems.category===category){
+            return menuItems
+          }
         })
         if (category==='all'){
-            displayMenueItems(menu)
+          displayMenueItems(menu)
         }else{
-            displayMenueItems(menuCatagaory)
-        }
-        
-       
-    })
-  })
+          displayMenueItems(menuCatagaory)
+          }
+          
+          
+        })
+      })
+  });
+  // filter items
 
-  function displayMenueItems(menuItems){
-    let displayMenue=menuItems.map(function(item){  
+    function displayMenueItems(menuItems){
+      let displayMenue=menuItems.map(function(item){  
         return ` <article class="menu-item" >
         <img src="${item.img}" class="photo" alt=${item.title}>
         <div class="item-info" >
@@ -115,6 +138,7 @@ const menu = [
     </article>`
     })
     displayMenue=displayMenue.join('')
+    // console.log(displayMenue)
     // .join hamesh apko ek string deta hai
     sectionCenter.innerHTML=displayMenue
   }
